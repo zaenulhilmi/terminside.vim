@@ -1,0 +1,14 @@
+*terminside.txt* Plugin for opening terminal inside vim easily
+
+If you found that you always opening up new terminal or windows or buffer to 
+execute command from terminal. You might need this. It will create a toggle to
+open and close terminal inside vim.
+
+Mappings:
+<Leader>zx or <Plug>TerminsideOpen 
+        Open terminal
+
+tnoremap <unique> <leader>zx <c-\><C-n>:hide<cr>
+        Hide Terminal 
+
+
