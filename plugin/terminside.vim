@@ -15,14 +15,14 @@ let g:loaded_terminside = 1
 
 tnoremap <Esc> <C-\><C-n>
 
-map <M-F12> <Plug>TerminsideOpen;
-tnoremap <M-F12> <c-\><C-n>:hide<cr>
+map <M-0> <Plug>TerminsideOpen;
+tnoremap <M-0> <c-\><C-n>:hide<cr>
 
 noremap <unique> <M-c> <Plug>TerminsideOpen;
 
 if !hasmapto('<Plug>TerminsideOpen;')
-    map <M-F12> <Plug>TerminsideOpen;
-    tnoremap <M-F12> <c-\><C-n>:hide<cr>
+    map <M-0> <Plug>TerminsideOpen;
+    tnoremap <M-0> <c-\><C-n>:hide<cr>
 endif
 
 noremap <unique> <script> <Plug>TerminsideOpen;  <SID>Open
