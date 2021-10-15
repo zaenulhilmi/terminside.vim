@@ -13,15 +13,16 @@ if exists("g:loaded_terminside")
 endif
 let g:loaded_terminside = 1
 
-
 tnoremap <Esc> <C-\><C-n>
 
-map <unique> <Leader>zx  <Plug>TerminsideOpen;
-tnoremap <unique> <leader>zx <c-\><C-n>:hide<cr>
+map <M-F12> <Plug>TerminsideOpen;
+tnoremap <M-F12> <c-\><C-n>:hide<cr>
+
+noremap <unique> <M-c> <Plug>TerminsideOpen;
 
 if !hasmapto('<Plug>TerminsideOpen;')
-    map <unique> <Leader>zx  <Plug>TerminsideOpen;
-    tnoremap <unique> <leader>zx <c-\><C-n>:hide<cr>
+    map <M-F12> <Plug>TerminsideOpen;
+    tnoremap <M-F12> <c-\><C-n>:hide<cr>
 endif
 
 noremap <unique> <script> <Plug>TerminsideOpen;  <SID>Open
