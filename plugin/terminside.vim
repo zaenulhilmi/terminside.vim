@@ -34,23 +34,33 @@ function! s:Open(name)
         botright split term://bash
         execute 'file' a:name
         startinsert
-    else 
-        let winnum=bufwinnr(bufnum)
-        if winnum != 1
-            let current_window = winnr()
-            if current_window == winnum 
-                hide
-            else 
-                botright split
-                exe 'buffer' a:name
-                startinsert
-            endif
+        return
+    endif
+
+    let winnum=bufwinnr(bufnum)
+    if winnum != 1
+        let current_window = winnr()
+        if current_window == winnum 
+            hide
         else 
+            botright split
+            exe 'buffer' a:name
             startinsert
         endif
+    else 
+        startinsert
     endif
 endfunction
 
+function! s:isBufferExist(name)
+    let bufnum=bufnr(expand(a:name))
+    if bufnum == -1
+        return 0
+    endif 
 
- let &cpo = s:save_cpo
- unlet s:save_cpo
+    return 1
+endfunction
+
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
