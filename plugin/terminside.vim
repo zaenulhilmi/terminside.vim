@@ -16,17 +16,28 @@ let g:loaded_terminside = 1
 tnoremap <Esc> <C-\><C-n>
 
 map <M-0> <Plug>TerminsideOpen;
-tnoremap <M-0> <c-\><C-n>:hide<cr>
+tnoremap <M-0> <Plug>TerminsideClose;
 
 noremap <unique> <M-c> <Plug>TerminsideOpen;
 
 if !hasmapto('<Plug>TerminsideOpen;')
     map <M-0> <Plug>TerminsideOpen;
+endif
+
+if !hasmapto('<Plug>TerminsideClose;')
     tnoremap <M-0> <c-\><C-n>:hide<cr>
 endif
 
 noremap <unique> <script> <Plug>TerminsideOpen;  <SID>Open
 noremap <SID>Open  :call <SID>Open("x")<CR>
+
+
+noremap <unique> <script> <Plug>TerminsideClose;  <SID>Close
+noremap <SID>Close  :call <SID>Close()<CR>
+
+function! s:Close()
+    exec "<c-\><C-n>:hide<cr>" 
+endfunction
 
 function! s:Open(name)
     let bufnum=bufnr(expand(a:name))
