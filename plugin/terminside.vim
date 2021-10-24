@@ -21,6 +21,23 @@ tmap <unique> <M-c> <esc>:call <SID>createNew() <cr>
 tmap <unique> <M-n> <esc>:call <SID>OpenNext() \| startinsert<cr>
 tmap <unique> <M-p> <esc>:call <SID>OpenPrev() \| startinsert<cr>
 
+if !hasmapto('<Plug>TerminsideOpen;')
+    map <M-0> <Plug>TerminsideOpen;
+endif
+
+if !hasmapto('<Plug>TerminsideClose;')
+    tnoremap <M-0> <c-\><C-n>:hide<cr>
+endif
+
+noremap <unique> <script> <Plug>TerminsideOpen;  <SID>Open
+noremap <SID>Open  :call <SID>Open()<CR>
+
+
+noremap <unique> <script> <Plug>TerminsideClose;  <SID>Close
+noremap <SID>Close  :call <SID>Close()<CR>
+
+
+
 function! s:OpenNext() 
     echom g:terminals
     let length = len(g:terminals)
@@ -68,21 +85,6 @@ function! s:createNew()
 endfunction
 
 
-
-if !hasmapto('<Plug>TerminsideOpen;')
-    map <M-0> <Plug>TerminsideOpen;
-endif
-
-if !hasmapto('<Plug>TerminsideClose;')
-    tnoremap <M-0> <c-\><C-n>:hide<cr>
-endif
-
-noremap <unique> <script> <Plug>TerminsideOpen;  <SID>Open
-noremap <SID>Open  :call <SID>Open()<CR>
-
-
-noremap <unique> <script> <Plug>TerminsideClose;  <SID>Close
-noremap <SID>Close  :call <SID>Close()<CR>
 
 function! s:Close()
     exec "<c-\><C-n>:hide<cr>" 
