@@ -42,8 +42,18 @@ function! s:OpenNext()
     let length = len(g:terminals)
     let i = 0
     let termPos = 0
-    for x in g:terminals
-        if x == g:terminal
+
+    let newTerminals = []
+    for v in g:terminals
+        let bufnum=bufnr(expand(v))
+        if bufnum != -1
+            call add(newTerminals, v)
+        endif
+    endfor
+
+    let g:terminals = newTerminals
+    for v in g:terminals
+        if v == g:terminal
             let termPos = i
         endif
         let i += 1
@@ -59,6 +69,17 @@ function! s:OpenPrev()
     let length = len(g:terminals)
     let i = 0
     let termPos = 0
+
+    let newTerminals = []
+    for v in g:terminals
+        let bufnum=bufnr(expand(v))
+        if bufnum != -1
+            call add(newTerminals, v)
+        endif
+    endfor
+
+    let g:terminals = newTerminals
+
     for x in g:terminals
         if x == g:terminal
             let termPos = i
