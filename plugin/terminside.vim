@@ -39,7 +39,6 @@ noremap <SID>Close  :call <SID>Close()<CR>
 
 
 function! s:OpenNext() 
-    echom g:terminals
     let length = len(g:terminals)
     let i = 0
     let termPos = 0
@@ -56,9 +55,7 @@ function! s:OpenNext()
     startinsert
 endfunction
 
-
 function! s:OpenPrev() 
-    echom g:terminals
     let length = len(g:terminals)
     let i = 0
     let termPos = 0
@@ -68,7 +65,6 @@ function! s:OpenPrev()
         endif
         let i += 1
     endfor
-
     let termPos = (termPos - 1) % length
     let g:terminal = g:terminals[termPos]
     exe 'buffer' g:terminal
@@ -95,9 +91,7 @@ let g:terminal = ""
 let g:terminals = []
 
 function! s:Open()
-
     let terms = len(g:terminals)
-
     if terms == 0
         botright split 
         terminal
@@ -106,9 +100,7 @@ function! s:Open()
         startinsert
         return
     endif
-
     let bufnum=bufnr(expand(g:terminal))
-    echom bufnum
     if bufnum == -1
         botright split 
         terminal
