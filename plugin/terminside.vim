@@ -133,28 +133,34 @@ function! s:Open()
         startinsert
         return
     endif
+    
     let bufnum=bufnr(expand(g:terminal))
+    let winnum=bufwinnr(bufnum)
+
+    if winnum != -1
+        let current_window = winnr()
+        if current_window == winnum 
+            hide
+        else 
+            exe winnum . ' wincmd w'
+            startinsert
+        endif
+        return
+    else 
+        startinsert
+    endif
     if bufnum == -1
         botright split 
         terminal
         let g:terminal = bufname("%")
         startinsert
         return
-    endif
-
-    let winnum=bufwinnr(bufnum)
-    if winnum != 1
-        let current_window = winnr()
-        if current_window == winnum 
-            hide
-        else 
-            botright split
-            exe 'buffer' g:terminal
-            startinsert
-        endif
     else 
+        botright split 
+        exe 'buffer ' . bufnum
         startinsert
     endif
+
 endfunction
 
 function! s:isBufferExist()
