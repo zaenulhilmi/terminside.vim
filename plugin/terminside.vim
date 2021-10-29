@@ -12,9 +12,9 @@ if exists("g:loaded_terminside")
     finish
 endif
 let g:loaded_terminside = 1
+let s:height = 20
 
 tnoremap <Esc> <C-\><C-n>
-
 
 if !hasmapto('<Plug>TerminsideOpen;')
     map <m-0> <Plug>TerminsideOpen;
@@ -107,6 +107,7 @@ endfunction
 function! s:createNew()
     hide
     botright split 
+    exec 'resize ' . s:height
     terminal
     let g:terminal = bufname("%")
     call add(g:terminals, g:terminal)
@@ -127,6 +128,7 @@ function! s:Open()
     let terms = len(g:terminals)
     if terms == 0
         botright split 
+        exec 'resize ' . s:height
         terminal
         let g:terminal = bufname("%")
         call add(g:terminals, g:terminal)
@@ -151,12 +153,14 @@ function! s:Open()
     endif
     if bufnum == -1
         botright split 
+        exec 'resize ' . s:height
         terminal
         let g:terminal = bufname("%")
         startinsert
         return
     else 
         botright split 
+        exec 'resize ' . s:height
         exe 'buffer ' . bufnum
         startinsert
     endif
