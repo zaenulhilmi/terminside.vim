@@ -17,17 +17,18 @@ tnoremap <Esc> <C-\><C-n>
 
 
 if !hasmapto('<Plug>TerminsideOpen;')
-    map <m-l> <Plug>TerminsideOpen;
+    map <m-0> <Plug>TerminsideOpen;
 endif
 noremap <unique> <script> <Plug>TerminsideOpen;  <SID>Open
 noremap <SID>Open  :call <SID>Open()<CR>
 
 
 if !hasmapto('<Plug>TerminsideClose;')
-    tnoremap <m-l> <c-\><C-n>:hide<cr>
+    "tnoremap <m-0> <c-\><C-n>:hide<cr>
+    tmap <m-0> <Plug>TerminsideClose;
 endif
-noremap <unique> <script> <Plug>TerminsideClose;  <SID>Close
-noremap <SID>Close  :call <SID>Close()<CR>
+tmap <unique> <script> <Plug>TerminsideClose;  <SID>Close
+tmap <SID>Close  <esc>:call <SID>Close()<CR>
 
 if !hasmapto('<Plug>TerminsideNew;')
     tmap <m-c> <Plug>TerminsideNew;
@@ -115,7 +116,7 @@ endfunction
 
 
 function! s:Close()
-    exec "<c-\><C-n>:hide<cr>" 
+    hide
 endfunction
 
 let g:terminal = ""
