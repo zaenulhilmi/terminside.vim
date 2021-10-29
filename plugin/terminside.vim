@@ -15,27 +15,38 @@ let g:loaded_terminside = 1
 
 tnoremap <Esc> <C-\><C-n>
 
-map <M-0> <Plug>TerminsideOpen;
-tnoremap <M-0> <Plug>TerminsideClose;
-tmap <unique> <M-c> <esc>:call <SID>createNew() <cr>
-tmap <unique> <M-n> <esc>:call <SID>OpenNext() \| startinsert<cr>
-tmap <unique> <M-p> <esc>:call <SID>OpenPrev() \| startinsert<cr>
 
 if !hasmapto('<Plug>TerminsideOpen;')
-    map <M-0> <Plug>TerminsideOpen;
+    map <m-l> <Plug>TerminsideOpen;
 endif
-
-if !hasmapto('<Plug>TerminsideClose;')
-    tnoremap <M-0> <c-\><C-n>:hide<cr>
-endif
-
 noremap <unique> <script> <Plug>TerminsideOpen;  <SID>Open
 noremap <SID>Open  :call <SID>Open()<CR>
 
 
+if !hasmapto('<Plug>TerminsideClose;')
+    tnoremap <m-l> <c-\><C-n>:hide<cr>
+endif
 noremap <unique> <script> <Plug>TerminsideClose;  <SID>Close
 noremap <SID>Close  :call <SID>Close()<CR>
 
+if !hasmapto('<Plug>TerminsideNew;')
+    tmap <m-c> <Plug>TerminsideNew;
+endif
+tnoremap <unique> <script> <Plug>TerminsideNew; <SID>createNew
+tmap <SID>createNew <esc>:call <SID>createNew()<cr>
+
+if !hasmapto('<Plug>TerminsideNext;')
+    tmap <m-n> <Plug>TerminsideNext;
+endif
+tnoremap <unique> <script> <Plug>TerminsideNext; <SID>OpenNext
+tmap <SID>OpenNext <esc>:call <SID>OpenNext() \| startinsert<cr>
+
+
+if !hasmapto('<Plug>TerminsidePrev;')
+    tmap <m-p> <Plug>TerminsidePrev;
+endif
+tnoremap <unique> <script> <Plug>TerminsidePrev; <SID>OpenPrev
+tmap <SID>OpenPrev <esc>:call <SID>OpenPrev() \| startinsert<cr>
 
 
 function! s:OpenNext() 
