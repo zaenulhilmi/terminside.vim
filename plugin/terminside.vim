@@ -139,8 +139,6 @@ function! s:Open()
         call add(g:terminals, g:terminal)
         if has('nvim')
             startinsert
-        else
-            normal i
         endif
         return
     endif
