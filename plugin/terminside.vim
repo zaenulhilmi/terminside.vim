@@ -127,12 +127,21 @@ let g:terminals = []
 function! s:Open()
     let terms = len(g:terminals)
     if terms == 0
-        botright split 
+        if has('nvim')
+            botright split 
+            terminal
+        else
+            below terminal
+        endif
+
         exec 'resize ' . s:height
-        terminal
         let g:terminal = bufname("%")
         call add(g:terminals, g:terminal)
-        startinsert
+        if has('nvim')
+            startinsert
+        else
+            normal i
+        endif
         return
     endif
     
@@ -145,7 +154,11 @@ function! s:Open()
             hide
         else 
             exe winnum . ' wincmd w'
-            startinsert
+            if has('nvim')
+                startinsert
+            else
+                normal i
+            endif
         endif
         return
     else 
@@ -156,13 +169,21 @@ function! s:Open()
         exec 'resize ' . s:height
         terminal
         let g:terminal = bufname("%")
-        startinsert
+        if has('nvim')
+            startinsert
+        else
+            normal i
+        endif
         return
     else 
         botright split 
         exec 'resize ' . s:height
         exe 'buffer ' . bufnum
-        startinsert
+        if has('nvim')
+            startinsert
+        else
+            normal i
+        endif
     endif
 
 endfunction
