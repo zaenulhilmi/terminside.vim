@@ -74,7 +74,11 @@ function! s:OpenNext()
     let termPos = (termPos + 1) % length
     let g:terminal = g:terminals[termPos]
     exe 'buffer' g:terminal
-    startinsert
+    if has('nvim')
+        startinsert
+    else
+        normal i
+    endif
 endfunction
 
 function! s:OpenPrev() 
@@ -101,14 +105,22 @@ function! s:OpenPrev()
     let termPos = (termPos - 1) % length
     let g:terminal = g:terminals[termPos]
     exe 'buffer' g:terminal
-    startinsert
+    if has('nvim')
+        startinsert
+    else
+        normal i
+    endif
 endfunction
 
 function! s:createNew()
     hide
-    botright split 
+    if has('nvim')
+        botright split 
+        terminal
+    else
+        below terminal
+    endif
     exec 'resize ' . s:height
-    terminal
     let g:terminal = bufname("%")
     call add(g:terminals, g:terminal)
     startinsert
