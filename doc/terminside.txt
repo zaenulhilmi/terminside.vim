@@ -1,14 +1,24 @@
 *terminside.txt* Plugin for opening terminal inside vim easily
 
-If you found that you always opening up new terminal or windows or buffer to 
-execute command from terminal. You might need this. It will create a toggle to
-open and close terminal inside vim.
+After installing terminside, by default it use ```Alt+0``` for toggling the 
+terminal to open and close it. Inside a terminal, can use ```Alt+c``` to 
+create a brand new terminal. ```Alt+n``` for switching to next terminal and 
+```Alt+p``` for previous terminal.
+In case you want something different or you already use the shortcut above,
+you can put something like this inside your .vimrc if you use vim or init.vim 
+if you use neo vim.
 
-Mappings:
-<Leader>zx or <Plug>TerminsideOpen 
-        Open terminal
+Default Mappings:
+map <M-0> <Plug>TerminsideOpen;
+tmap <M-0> <Plug>TerminsideClose;
+tmap <M-c> <Plug>TerminsideNew;
+tmap <M-p> <Plug>TerminsidePrev;
+tmap <M-n> <Plug>TerminsideNext;
 
-tnoremap <unique> <leader>zx <c-\><C-n>:hide<cr>
-        Hide Terminal 
 
-
+Another mapping that can be used:
+map <C-l> <Plug>TerminsideOpen;
+tmap <C-l> <Plug>TerminsideClose;
+tmap <leader>c <Plug>TerminsideNew;
+tmap <leader>p <Plug>TerminsidePrev;
+tmap <leader>n <Plug>TerminsideNext;

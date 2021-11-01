@@ -2,9 +2,9 @@
 ![Terminside Screenshot](https://github.com/zaenulhilmi/terminside.vim/blob/main/terminside-demo.gif)
 
 ## Introduction
-Terminside is tool to easily accessing terminal inside vim. It will toggle 
+Terminside is a tool to easily accessing terminal inside vim. It will toggle 
 and show it as window at the bottom of the screen. Terminside can create 
-multiple terminal that can be switch later.
+multiple terminal that can be switched later.
 
 ## Background
 When I need to do something using terminal, I have to open up a new terminal 
